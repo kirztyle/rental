@@ -1,6 +1,5 @@
 import { connectDB } from "@/lib/mongodb";
 import { Booking } from "@/models/Booking"; // Pastikan Booking sudah import
-import { Car } from "@/models/Car"; // Import Car supaya Mongoose daftar modelnya
 import { NextResponse } from "next/server";
 
 export async function GET() {

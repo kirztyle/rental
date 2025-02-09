@@ -1,5 +1,4 @@
 import mongoose, { Schema, models } from "mongoose";
-import { Car } from "@/models/Car"; // Import model Car biar bisa dipopulate
 
 const BookingSchema = new Schema({
   carId: { type: Schema.Types.ObjectId, ref: "Car" },

@@ -2,7 +2,6 @@
 
 import { useState, useEffect, Fragment } from "react";
 import { Transition } from "@headlessui/react";
-import dynamic from 'next/dynamic';
 
 export default function CarCatalog() {
   const [cars, setCars] = useState([]);
