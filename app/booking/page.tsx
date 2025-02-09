@@ -18,7 +18,11 @@ export default function AdminBookingDashboardCards() {
         }
         const data = await res.json();
         setBookings(data);
-      },
+      } catch (error) {
+        setError("An error occurred");
+      } finally {
+        setLoading(false);
+      }
     }
     fetchBookings();
   }, []);
