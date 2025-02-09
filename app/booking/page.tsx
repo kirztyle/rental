@@ -18,7 +18,7 @@ export default function AdminBookingDashboardCards() {
         }
         const data = await res.json();
         setBookings(data);
-      } catch (error) {
+      } catch (err) {
         setError("An error occurred");
       } finally {
         setLoading(false);
