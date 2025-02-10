@@ -3,8 +3,11 @@ import { Car } from "@/models/Car";
 import { NextResponse } from "next/server";
 
 // Ambil mobil berdasarkan ID
-export async function GET(req: Request, { params }) {
-  const id = params.id;
+export async function GET(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  const { id } = params;
   await connectDB();
   const car = await Car.findById(id);
   if (!car) {
@@ -14,10 +17,13 @@ export async function GET(req: Request, { params }) {
 }
 
 // Update mobil berdasarkan ID
-export async function PUT(req: Request, { params }) {
-  const id = params.id;
+export async function PUT(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  const { id } = params;
   await connectDB();
-  const data = await req.json();
+  const data = await request.json();
   const updatedCar = await Car.findByIdAndUpdate(id, data, { new: true });
   if (!updatedCar) {
     return NextResponse.json({ message: "Mobil tidak ditemukan" }, { status: 404 });
@@ -26,8 +32,11 @@ export async function PUT(req: Request, { params }) {
 }
 
 // Hapus mobil berdasarkan ID
-export async function DELETE(req: Request, { params }) {
-  const id = params.id;
+export async function DELETE(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  const { id } = params;
   await connectDB();
   const deletedCar = await Car.findByIdAndDelete(id);
   if (!deletedCar) {
