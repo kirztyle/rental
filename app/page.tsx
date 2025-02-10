@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Fragment } from "react";
 import { Transition } from "@headlessui/react";
+import Image from "next/image";
 
 export default function CarCatalog() {
   const [cars, setCars] = useState([]);
@@ -50,7 +51,7 @@ export default function CarCatalog() {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setSelectedCar(null); // reset selectedCar
+    setSelectedCar(null);
     setForm({
       user: "",
       whatsappNumber: "",
@@ -102,11 +103,14 @@ export default function CarCatalog() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {cars.map((car) => (
           <div key={car._id} className="border rounded-lg shadow p-4 flex flex-col">
-            <img
-              src={car.image}
-              alt={`${car.brand} ${car.name}`}
-              className="w-full h-40 object-cover mb-4"
-            />
+            <div className="relative w-full h-40 mb-4">
+              <Image
+                src={car.image}
+                alt={`${car.brand} ${car.name}`}
+                fill
+                className="object-cover"
+              />
+            </div>
             <h2 className="text-xl font-semibold">
               {car.brand} {car.name}
             </h2>
@@ -162,9 +166,11 @@ export default function CarCatalog() {
                   X
                 </button>
                 <h2 className="text-2xl mb-4">
-                  Isi form untuk booking mobil <span className="font-bold"> <br />{selectedCar?.brand} - {selectedCar?.name}</span>
+                  Isi form untuk booking mobil <br />
+                  <span className="font-bold">
+                    {selectedCar?.brand} - {selectedCar?.name}
+                  </span>
                 </h2>
-                <h2></h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label htmlFor="user" className="block font-medium">
