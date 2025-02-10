@@ -82,7 +82,8 @@ export default function CarCatalog() {
         body: JSON.stringify(payload),
       });
       if (res.ok) {
-        const data = await res.json();
+        // Langsung await res.json() tanpa menyimpan ke variabel
+        await res.json();
         setMessage("Form berhasil diisi, kami akan mengirim pesan melalui WhatsApp");
         setTimeout(() => {
           closeModal();
