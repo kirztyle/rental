@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 
 export default function AdminBookingDashboardCards() {
@@ -18,8 +16,8 @@ export default function AdminBookingDashboardCards() {
         }
         const data = await res.json();
         setBookings(data);
-      } catch (error) {
-        setError("An error occurred");
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "An error occurred");
       } finally {
         setLoading(false);
       }
