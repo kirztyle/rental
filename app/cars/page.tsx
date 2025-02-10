@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 export default function CarsPage() {
   const [cars, setCars] = useState([]);
@@ -125,13 +126,14 @@ export default function CarsPage() {
         {cars.map((car) => (
           <div
             key={car._id}
-            className="bg-white p-5 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-200 
-                 flex flex-col items-center text-center w-72"
+            className="bg-white p-5 rounded-2xl shadow-lg hover:shadow-xl transition-shadow border border-gray-200 flex flex-col items-center text-center w-72"
           >
-            <img
+            <Image
               src={car.image}
               alt={car.name}
-              className="w-fit h-40 object-cover rounded-xl"
+              width={288} // w-72 => 288px
+              height={160} // h-40 => 160px
+              className="object-cover rounded-xl"
             />
             <div className="mt-4">
               <h2 className="text-xl font-bold text-gray-800">{car.name}</h2>
