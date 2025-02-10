@@ -1,11 +1,17 @@
 import { connectDB } from "@/lib/mongodb";
 import { Car } from "@/models/Car";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+
+type RouteContext = {
+  params: {
+    id: string;
+  };
+};
 
 // Ambil mobil berdasarkan ID
 export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
+  _request: NextRequest,
+  { params }: RouteContext
 ) {
   const { id } = params;
   await connectDB();
@@ -18,8 +24,8 @@ export async function GET(
 
 // Update mobil berdasarkan ID
 export async function PUT(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  { params }: RouteContext
 ) {
   const { id } = params;
   await connectDB();
@@ -33,8 +39,8 @@ export async function PUT(
 
 // Hapus mobil berdasarkan ID
 export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
+  _request: NextRequest,
+  { params }: RouteContext
 ) {
   const { id } = params;
   await connectDB();
